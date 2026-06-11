@@ -1,6 +1,7 @@
 import {
   SITE_URL,
   SITE_NAME,
+  SITE_SLOGAN,
   SITE_DESCRIPTION,
   PRICE_RANGE,
   AREA_SERVED,
@@ -24,8 +25,11 @@ export function localBusinessLd() {
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     image: `${SITE_URL}/og.png`,
+    logo: `${SITE_URL}/brand/logo-dark.png`,
+    slogan: SITE_SLOGAN,
     telephone: contacts.phone,
     priceRange: PRICE_RANGE,
+    currenciesAccepted: "RUB",
     address: {
       "@type": "PostalAddress",
       addressLocality: CITY,
@@ -34,6 +38,31 @@ export function localBusinessLd() {
     },
     areaServed,
     sameAs: [contacts.instagram.href],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Услуги «Арт Клининг»",
+      itemListElement: services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: s.title,
+          description: s.summary,
+        },
+      })),
+    },
+  };
+}
+
+export function webSiteLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: `${SITE_URL}/`,
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    inLanguage: "ru-RU",
+    publisher: { "@id": `${SITE_URL}/#business` },
   };
 }
 

@@ -6,7 +6,7 @@ import {
   SITE_DESCRIPTION,
   SITE_NAME,
 } from "@/lib/constants";
-import { localBusinessLd } from "@/lib/jsonld";
+import { localBusinessLd, webSiteLd } from "@/lib/jsonld";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { Preloader } from "@/components/providers/Preloader";
 import { Analytics } from "@/components/Analytics";
@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "уборка Кострома",
   ],
   authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  formatDetection: { telephone: true, address: false, email: false },
   alternates: { canonical: `${SITE_URL}/` },
   openGraph: {
     type: "website",
@@ -66,6 +69,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessLd()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(webSiteLd()),
           }}
         />
         <Preloader />
