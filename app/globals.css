@@ -137,6 +137,10 @@
   }
 }
 
+.photo-tone {
+  filter: saturate(0.92) contrast(0.97) brightness(1.02);
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);

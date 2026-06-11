@@ -31,3 +31,6 @@ yarn-error.log*
 .vscode/*
 !.vscode/launch.json
 .idea
+
+# Исходники фото (в репозиторий идут оптимизированные public/photos)
+/photos/

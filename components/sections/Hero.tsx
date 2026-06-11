@@ -6,8 +6,9 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { TextLink } from "@/components/ui/TextLink";
 import { Marquee } from "@/components/ui/Marquee";
-import { Placeholder } from "@/components/ui/Placeholder";
+import Image from "next/image";
 import { ruTypo } from "@/lib/utils";
+import { BASE_PATH } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -87,12 +88,21 @@ export function Hero() {
         </div>
 
         <motion.div {...fade(0.4)} className="lg:col-span-5">
-          <motion.div style={reduce ? undefined : { y: imgY }}>
-            <Placeholder
-              className="aspect-[4/5] w-full"
-              label="Макро-текстура пены"
-            />
-          </motion.div>
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[20px]">
+            <motion.div
+              style={reduce ? undefined : { y: imgY }}
+              className="absolute inset-x-0 -top-[10%] h-[120%]"
+            >
+              <Image
+                src={`${BASE_PATH}/photos/hero-foam.jpg`}
+                alt="Макро-текстура мыльной пены в молочной палитре"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="photo-tone object-cover"
+              />
+            </motion.div>
+          </div>
         </motion.div>
       </div>
 

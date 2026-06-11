@@ -2,9 +2,10 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { Counter } from "@/components/ui/Counter";
-import { Placeholder } from "@/components/ui/Placeholder";
+import Image from "next/image";
 import { facts } from "@/content/facts";
 import { ruTypo } from "@/lib/utils";
+import { BASE_PATH } from "@/lib/constants";
 
 const paragraphs = [
   "«Арт Клининг» — клининговая компания, которая не просто убирает, а создаёт атмосферу чистоты и гармонии в вашем пространстве. Мы верим: чистота — это основа вашего вдохновения и спокойствия.",
@@ -37,7 +38,15 @@ export function About() {
 
           <div className="lg:col-span-5">
             <Reveal delay={0.1}>
-              <Placeholder className="aspect-[3/4] w-full" label="Интерьер" />
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[20px]">
+                <Image
+                  src={`${BASE_PATH}/photos/about-interior.jpg`}
+                  alt="Интерьер в тёплой молочной палитре"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="photo-tone object-cover"
+                />
+              </div>
             </Reveal>
           </div>
         </div>

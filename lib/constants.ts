@@ -2,6 +2,11 @@
 // TODO: заменить на собственный домен заказчика (тогда убрать basePath в next.config).
 export const SITE_URL = "https://scorpochabro-solo.github.io/artclean";
 
+// Базовый путь GitHub Pages (project site). next/image с unoptimized НЕ добавляет
+// basePath к src, поэтому подставляем его вручную к локальным картинкам (логотип, фото).
+// При переезде на корневой домен/Vercel — сделать пустым "".
+export const BASE_PATH = "/artclean";
+
 export const SITE_NAME = "Арт Клининг";
 export const SITE_SLOGAN = "Чистота, как искусство";
 export const SITE_TITLE =

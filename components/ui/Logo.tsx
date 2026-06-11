@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_NAME, BASE_PATH } from "@/lib/constants";
 
 interface LogoProps {
   variant?: "dark" | "light";
@@ -9,7 +9,10 @@ interface LogoProps {
 }
 
 export function Logo({ variant = "dark", className, priority = false }: LogoProps) {
-  const src = variant === "dark" ? "/brand/logo-dark.png" : "/brand/logo-light.png";
+  const src =
+    variant === "dark"
+      ? `${BASE_PATH}/brand/logo-dark.png`
+      : `${BASE_PATH}/brand/logo-light.png`;
   return (
     <Image
       src={src}
