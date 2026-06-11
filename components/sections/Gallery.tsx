@@ -24,11 +24,11 @@ export function Gallery() {
       </Container>
 
       <Reveal delay={0.1}>
-        <div className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:mt-16 md:gap-6 md:px-16 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-12 grid auto-cols-[78%] grid-flow-col gap-4 overflow-x-auto px-6 pb-4 snap-x snap-mandatory scroll-px-6 [-ms-overflow-style:none] [scrollbar-width:none] sm:auto-cols-[46%] md:mt-16 md:gap-6 md:px-16 md:scroll-px-16 lg:grid-flow-row lg:auto-cols-auto lg:grid-cols-3 lg:overflow-x-visible lg:px-16 lg:pb-0 [&::-webkit-scrollbar]:hidden">
           {photos.map((p) => (
             <figure
               key={p.file}
-              className="relative aspect-[4/5] w-[78%] shrink-0 snap-start overflow-hidden rounded-[20px] sm:w-[46%] lg:w-[30%]"
+              className="relative aspect-[4/5] snap-start overflow-hidden rounded-[20px]"
             >
               <Image
                 src={`${BASE_PATH}/photos/${p.file}.jpg`}
