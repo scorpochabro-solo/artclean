@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { TextLink } from "@/components/ui/TextLink";
 import { navLinks, ctaLink } from "@/content/nav";
+import { v2NavLinks } from "@/content/v2";
 import { scrollToHash } from "@/lib/scroll";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +17,8 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
+  const pathname = usePathname() ?? "/";
+  const links = pathname.startsWith("/v2") ? v2NavLinks : navLinks;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -58,7 +62,7 @@ export function Header() {
         </a>
 
         <nav className="hidden items-center gap-9 lg:flex">
-          {navLinks.map((l) => (
+          {links.map((l) => (
             <TextLink key={l.href} href={l.href}>
               {l.label}
             </TextLink>
@@ -103,7 +107,7 @@ export function Header() {
             transition={{ duration: 0.4, ease: EASE }}
           >
             <div className="container-x flex h-full flex-col justify-center gap-1 pb-10">
-              {navLinks.map((l, i) => (
+              {links.map((l, i) => (
                 <motion.a
                   key={l.href}
                   href={l.href}
@@ -128,7 +132,7 @@ export function Header() {
                 initial={reduce ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  delay: reduce ? 0 : 0.12 + navLinks.length * 0.07,
+                  delay: reduce ? 0 : 0.12 + links.length * 0.07,
                   duration: 0.5,
                   ease: EASE,
                 }}
