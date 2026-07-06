@@ -1,11 +1,13 @@
 import type { NextConfig } from "next";
 
-// Деплой на GitHub Pages (project site): статический экспорт + подпуть /artclean.
-// Для кастомного домена/Vercel: убрать output/basePath/trailingSlash и вернуть
-// оптимизацию изображений (images.unoptimized = false).
+// Статический экспорт. Базовый путь управляется env (см. README «Переезд на домен»):
+// GitHub Pages project-site → basePath /artclean (дефолт);
+// свой домен (art-cleaning44.ru) → NEXT_PUBLIC_BASE_PATH= (пусто).
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/artclean";
+
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/artclean",
+  basePath,
   trailingSlash: true,
   reactStrictMode: true,
   images: {

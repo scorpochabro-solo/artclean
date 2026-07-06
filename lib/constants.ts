@@ -1,18 +1,19 @@
-// Канонический URL. Сейчас — адрес GitHub Pages (project site).
-// TODO: заменить на собственный домен заказчика (тогда убрать basePath в next.config).
-export const SITE_URL = "https://scorpochabro-solo.github.io/artclean";
+// Канонический URL и базовый путь. Управляются env-переменными сборки:
+//   NEXT_PUBLIC_SITE_URL=https://art-cleaning44.ru NEXT_PUBLIC_BASE_PATH= npm run build
+// Дефолты — текущий GitHub Pages (project site). См. README, раздел «Переезд на домен».
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://scorpochabro-solo.github.io/artclean";
 
-// Базовый путь GitHub Pages (project site). next/image с unoptimized НЕ добавляет
-// basePath к src, поэтому подставляем его вручную к локальным картинкам (логотип, фото).
-// При переезде на корневой домен/Vercel — сделать пустым "".
-export const BASE_PATH = "/artclean";
+// next/image с unoptimized НЕ добавляет basePath к src, поэтому подставляем его
+// вручную к локальным картинкам (логотип, фото).
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/artclean";
 
 export const SITE_NAME = "Арт Клининг";
 export const SITE_SLOGAN = "Чистота, как искусство";
 export const SITE_TITLE =
-  "Арт Клининг — премиальная клининговая компания в Костроме";
+  "Клининговая компания в Костроме — уборка квартир, домов и офисов | Арт Клининг";
 export const SITE_DESCRIPTION =
-  "Премиальный клининг в Костроме и области: генеральная уборка, уборка после ремонта, baby-клининг, уход за гардеробом и территорией. Обученная команда, профессиональная химия.";
+  "Профессиональная уборка в Костроме и области: генеральная, после ремонта, поддерживающая, baby-клининг, офисы и загородные дома. Обученная команда, профессиональная химия и оборудование, смета до начала работ.";
 
 // Аналитика. Рендерится только если ID задан. TODO: вставить идентификаторы.
 export const YM_ID = "";

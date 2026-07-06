@@ -1,3 +1,5 @@
+import { BASE_PATH } from "./constants";
+
 interface LenisLike {
   scrollTo: (
     target: string | HTMLElement | number,
@@ -17,7 +19,7 @@ export function scrollToHash(hash: string): void {
   if (typeof document === "undefined") return;
   const el = document.querySelector<HTMLElement>(hash);
   if (!el) {
-    window.location.href = "/artclean/" + hash;
+    window.location.href = BASE_PATH + "/" + hash;
     return;
   }
 

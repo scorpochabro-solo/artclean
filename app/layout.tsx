@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import "./fonts.css";
 import {
   SITE_URL,
   SITE_TITLE,
   SITE_DESCRIPTION,
   SITE_NAME,
+  BASE_PATH,
 } from "@/lib/constants";
 import { localBusinessLd, webSiteLd } from "@/lib/jsonld";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
@@ -19,13 +19,20 @@ export const metadata: Metadata = {
   title: { default: SITE_TITLE, template: "%s — Арт Клининг" },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
+  // Семантика проверена по выдаче: так ищут клининг в Костроме.
   keywords: [
     "клининг Кострома",
-    "клининговая компания",
-    "генеральная уборка",
-    "уборка после ремонта",
+    "клининговая компания Кострома",
+    "уборка квартир Кострома",
+    "генеральная уборка Кострома",
+    "уборка после ремонта Кострома",
+    "послестроительная уборка",
+    "уборка офисов Кострома",
+    "уборка коттеджей и загородных домов",
+    "поддерживающая уборка",
     "baby-клининг",
-    "уборка Кострома",
+    "мытьё окон Кострома",
+    "заказать уборку Кострома",
   ],
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
@@ -52,6 +59,10 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+  other: {
+    "geo.region": "RU-KOS",
+    "geo.placename": "Кострома",
+  },
 };
 
 export const viewport: Viewport = {
@@ -64,6 +75,26 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
+      <head>
+        {/* Шрифты из public/ (не через webpack): url() внутри резолвятся от файла,
+            поэтому CSS работает и на /artclean, и на корневом домене. */}
+        <link rel="stylesheet" href={`${BASE_PATH}/fonts.css`} />
+        {/* Preload критичных шрифтов (H1 и основной текст) — быстрее FCP/LCP. */}
+        {[
+          "cormorant-cyrillic-600-normal",
+          "cormorant-cyrillic-600-italic",
+          "manrope-cyrillic-400-normal",
+        ].map((f) => (
+          <link
+            key={f}
+            rel="preload"
+            href={`${BASE_PATH}/fonts/${f}.woff2`}
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+        ))}
+      </head>
       <body>
         <script
           type="application/ld+json"

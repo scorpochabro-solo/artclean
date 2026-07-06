@@ -132,7 +132,24 @@ public/brand/   логотипы + капля
 4. Каждый пуш в `main` собирает и публикует сайт на
    `https://scorpochabro-solo.github.io/artclean/`.
 
-Свой домен / Vercel вместо Pages: в `next.config.ts` убрать `output`/`basePath`/
-`trailingSlash` и вернуть оптимизацию картинок; в `app/fonts.css` убрать префикс
-`/artclean`; в `lib/constants.ts` обновить `SITE_URL`. На Vercel (`npm i -g vercel && vercel`)
-форма и серверная часть работают без ограничений.
+## Переезд на домен (art-cleaning44.ru)
+
+URL и базовый путь управляются env-переменными сборки — код менять не нужно.
+Шрифты подключены относительными путями, картинки — через `BASE_PATH`, поэтому
+всё переезжает автоматически.
+
+1. Собрать под домен:
+   ```bash
+   NEXT_PUBLIC_SITE_URL=https://art-cleaning44.ru NEXT_PUBLIC_BASE_PATH= npm run build
+   ```
+   `sitemap`, `robots`, `canonical`, OG, JSON-LD и `llms.txt` подхватят домен сами.
+2. Хостинг:
+   - **GitHub Pages + свой домен**: добавить файл `CNAME` с текстом `art-cleaning44.ru`
+     в корень ветки `gh-pages`, в настройках Pages указать Custom domain, у регистратора —
+     A-записи GitHub (185.199.108–111.153) и CNAME `www` → `scorpochabro-solo.github.io`.
+   - **Любой статик-хостинг/VPS**: залить содержимое `out/`.
+3. После переезда: включить HTTPS (Enforce HTTPS), добавить сайт в
+   **Яндекс.Вебмастер** и **Google Search Console**, отправить `https://art-cleaning44.ru/sitemap.xml`,
+   region в Вебмастере — Кострома; вписать `YM_ID` в `lib/constants.ts`.
+4. Vercel-вариант (если нужна серверная форма): убрать `output: "export"` и
+   `images.unoptimized`, вернуть `app/api/lead` — см. историю git.
