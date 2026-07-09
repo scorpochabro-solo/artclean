@@ -70,11 +70,19 @@ export function Contact() {
 
   const phoneReg = register("phone");
 
-  // GitHub Pages — статика без backend: онлайн-отправка отключена.
-  // Форма валидируется, затем предлагаем позвонить.
-  // TODO: подключить доставку (Formspree / Telegram / backend на Vercel) — см. README.
-  const onSubmit = () => {
-    setStatus("success");
+  const onSubmit = async (data: FormValues) => {
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -139,10 +147,10 @@ export function Contact() {
             <div className="rounded-[24px] border border-milk-200 bg-milk-50 p-6 md:p-8">
               {status === "success" ? (
                 <div className="flex min-h-[420px] flex-col items-start justify-center">
-                  <h3 className="text-h3">Почти готово</h3>
+                  <h3 className="text-h3">Заявка отправлена</h3>
                   <p className="mt-3 text-ink-700">
-                    Онлайн-отправка заявок сейчас настраивается. Позвоните нам —
-                    мы на связи и ответим на все вопросы.
+                    Спасибо! Мы получили вашу заявку и свяжемся с вами в
+                    ближайшее время. Если удобнее — позвоните нам:
                   </p>
                   <a
                     href={contacts.phoneHref}
