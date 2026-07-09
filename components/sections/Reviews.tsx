@@ -14,7 +14,7 @@ export function Reviews() {
     const el = ref.current;
     if (!el) return;
     el.scrollBy({
-      left: dir * el.clientWidth * 0.85,
+      left: dir * el.clientWidth * 0.9,
       behavior: reduce ? "auto" : "smooth",
     });
   };
@@ -37,25 +37,17 @@ export function Reviews() {
   return (
     <section id="reviews" className="section-y">
       <Container>
-        <div className="flex items-end justify-between gap-6">
-          <SectionHead eyebrow="Отзывы">
-            Чистота, <em className="font-medium italic">которую замечают</em>
-          </SectionHead>
-          <div className="hidden shrink-0 gap-3 md:flex">
-            <Arrow dir={-1} />
-            <Arrow dir={1} />
-          </div>
-        </div>
+        <SectionHead eyebrow="Отзывы">
+          Чистота, <em className="font-medium italic">которую замечают</em>
+        </SectionHead>
 
+        {/* Мобайл — свайп со snap; десктоп — статичная сетка 2 колонки (без скролла) */}
         <div
           ref={ref}
-          className="mt-12 flex snap-x snap-mandatory gap-8 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-12 grid grid-flow-col auto-cols-[85%] gap-6 overflow-x-auto pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] sm:auto-cols-[62%] md:mt-14 md:grid-flow-row md:auto-cols-auto md:grid-cols-2 md:gap-12 md:overflow-visible md:snap-none [&::-webkit-scrollbar]:hidden"
         >
           {reviews.map((r, i) => (
-            <figure
-              key={i}
-              className="w-full shrink-0 snap-start md:w-[68%] lg:w-[54%]"
-            >
+            <figure key={i} className="snap-start">
               <blockquote className="font-display text-[clamp(1.5rem,3vw,2.25rem)] italic leading-[1.3] text-ink-900">
                 «{r.quote}»
               </blockquote>
@@ -66,7 +58,7 @@ export function Reviews() {
           ))}
         </div>
 
-        <div className="mt-6 flex gap-3 md:hidden">
+        <div className="mt-8 flex gap-3 md:hidden">
           <Arrow dir={-1} />
           <Arrow dir={1} />
         </div>

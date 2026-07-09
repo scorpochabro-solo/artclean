@@ -10,6 +10,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Field, fieldClass } from "@/components/ui/Field";
+import { ContactActions } from "@/components/ui/ContactActions";
 import { services } from "@/content/services";
 import { contacts } from "@/content/contacts";
 import { trackPhoneClick } from "@/lib/analytics";
@@ -128,6 +129,9 @@ export function Contact() {
                   </div>
                 )}
               </dl>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <ContactActions className="mt-8" />
             </Reveal>
           </div>
 

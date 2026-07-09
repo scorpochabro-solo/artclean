@@ -7,7 +7,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/artclean";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath,
+  basePath: basePath || undefined,
   trailingSlash: true,
   reactStrictMode: true,
   images: {

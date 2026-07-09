@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
-import { TextLink } from "@/components/ui/TextLink";
 import { Marquee } from "@/components/ui/Marquee";
 import Image from "next/image";
 import { ruTypo } from "@/lib/utils";
@@ -80,10 +79,18 @@ export function Hero() {
 
           <motion.div
             {...fade(0.62)}
-            className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4"
+            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
           >
-            <Button href="#contact">Рассчитать уборку</Button>
-            <TextLink href="#services">Смотреть услуги</TextLink>
+            <Button href="#contact" className="w-full justify-center sm:w-auto">
+              Рассчитать уборку
+            </Button>
+            <Button
+              href="#services"
+              arrow={false}
+              className="w-full justify-center sm:w-auto"
+            >
+              Смотреть услуги
+            </Button>
           </motion.div>
         </div>
 
