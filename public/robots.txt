@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Метки Яндекс.Директа (yclid), UTM и соцсетей.
+# Без этого Яндекс считает aklin.ru/ и aklin.ru/?yclid=123 разными страницами
+# и плодит дубли. Директиву понимает Яндекс, остальные роботы её игнорируют.
+Clean-param: yclid&utm_source&utm_medium&utm_campaign&utm_term&utm_content&gclid&fbclid&_openstat
+
+Sitemap: https://aklin.ru/sitemap.xml

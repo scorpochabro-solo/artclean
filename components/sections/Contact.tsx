@@ -16,9 +16,9 @@ import { contacts } from "@/content/contacts";
 import { trackPhoneClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-// Реле формы на финском сервере (RU-сервер не достаёт Telegram, поэтому заявку
-// шлёт браузер напрямую сюда, а сервер уже в бота). См. историю деплоя.
-const LEAD_ENDPOINT = "https://api.aklin.ru/api/lead";
+// Заявка уходит на свой же домен. Дальше nginx пробрасывает её на реле за границей,
+// потому что api.telegram.org недоступен из российских дата-центров.
+const LEAD_ENDPOINT = "/api/lead";
 
 const schema = z.object({
   name: z.string().min(2, "Укажите имя"),
@@ -77,10 +77,9 @@ export function Contact() {
   const onSubmit = async (data: FormValues) => {
     setStatus("loading");
     try {
-      // ponytail: без заголовков → тип text/plain → «простой» CORS-запрос без
-      // preflight; бэкенд всё равно парсит тело как JSON.
       const res = await fetch(LEAD_ENDPOINT, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error(String(res.status));
