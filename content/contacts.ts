@@ -25,6 +25,6 @@ export const contacts = {
     href: "https://www.instagram.com/art_cleaning_",
   },
   telegramHref: `https://t.me/+${PHONE}`,
-  // MAX (мессенджер). TODO: сверить формат ссылки по номеру, если чат не откроется.
-  maxHref: `https://max.ru/+${PHONE}`,
+  maxHref:
+    "https://max.ru/u/f9LHodD0cOLxy9AskZ0rLsQgQM1r179ZtwuLXLyeLkOF3_m5zKe3DLZMUXM",
 };
