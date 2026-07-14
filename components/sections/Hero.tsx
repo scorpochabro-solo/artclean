@@ -45,27 +45,34 @@ export function Hero() {
         className="relative container-x grid items-center gap-10 pb-16 pt-12 md:gap-12 md:pb-24 md:pt-20 lg:grid-cols-12 lg:gap-16"
       >
         <div className="lg:col-span-7">
-          <motion.div {...fade(0.1)}>
-            <Eyebrow withDrop>Клининговая компания · Кострома и&nbsp;область</Eyebrow>
-          </motion.div>
+          {/* Надзаголовок живёт ВНУТРИ h1: иначе главный заголовок страницы —
+              «Чистота, как искусство», без слов «клининг» и «Кострома».
+              Визуально всё как было, но поисковик видит услугу и город. */}
+          <h1 className="text-h1">
+            <motion.span {...fade(0.1)} className="block">
+              <Eyebrow as="span" withDrop>
+                Клининговая компания · Кострома и&nbsp;область
+              </Eyebrow>
+            </motion.span>
 
-          <h1 className="text-h1 mt-6">
-            {heroLines.map((line, i) => (
-              <span key={i} className="block overflow-hidden pb-[0.05em]">
-                {reduce ? (
-                  <span className="block">{line}</span>
-                ) : (
-                  <motion.span
-                    className="block"
-                    initial={{ y: "110%" }}
-                    animate={{ y: "0%" }}
-                    transition={{ duration: 0.9, ease: EASE, delay: 0.2 + i * 0.12 }}
-                  >
-                    {line}
-                  </motion.span>
-                )}
-              </span>
-            ))}
+            <span className="mt-6 block">
+              {heroLines.map((line, i) => (
+                <span key={i} className="block overflow-hidden pb-[0.05em]">
+                  {reduce ? (
+                    <span className="block">{line}</span>
+                  ) : (
+                    <motion.span
+                      className="block"
+                      initial={{ y: "110%" }}
+                      animate={{ y: "0%" }}
+                      transition={{ duration: 0.9, ease: EASE, delay: 0.2 + i * 0.12 }}
+                    >
+                      {line}
+                    </motion.span>
+                  )}
+                </span>
+              ))}
+            </span>
           </h1>
 
           <motion.p
