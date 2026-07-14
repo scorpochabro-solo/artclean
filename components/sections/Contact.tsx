@@ -13,7 +13,7 @@ import { Field, fieldClass } from "@/components/ui/Field";
 import { ContactActions } from "@/components/ui/ContactActions";
 import { services } from "@/content/services";
 import { contacts } from "@/content/contacts";
-import { trackPhoneClick } from "@/lib/analytics";
+import { trackLeadSubmit, trackPhoneClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 // Заявка уходит на свой же домен. Дальше nginx пробрасывает её на реле за границей,
@@ -83,6 +83,7 @@ export function Contact() {
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error(String(res.status));
+      trackLeadSubmit();
       setStatus("success");
     } catch {
       setStatus("error");
