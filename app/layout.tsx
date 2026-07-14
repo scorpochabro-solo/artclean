@@ -39,6 +39,11 @@ export const metadata: Metadata = {
   publisher: SITE_NAME,
   formatDetection: { telephone: true, address: false, email: false },
   alternates: { canonical: `${SITE_URL}/` },
+  // Подтверждение владения в Google Search Console: TXT-запись в DNS умерла
+  // вместе с удалённой зоной Cloudflare, мета-тег живёт вместе с сайтом.
+  verification: {
+    google: "cgkbURBsWTWOamlnnm6WLqLIgdgWMLG02PF3IOsu8ZA",
+  },
   openGraph: {
     type: "website",
     locale: "ru_RU",
