@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Reveal } from "@/components/ui/Reveal";
+import Link from "next/link";
 import { Collapse } from "@/components/ui/Collapse";
 import { Drop } from "@/components/ui/Drop";
 import { services } from "@/content/services";
@@ -98,6 +99,22 @@ export function Services() {
                       </span>
                     )}
                   </button>
+
+                  {/* Всегда в DOM (не в Collapse) — ссылку видит и посетитель,
+                      и поисковый робот: перелинковка на /uslugi/<slug>/. */}
+                  <div className="relative z-10 -mt-2 px-6 pb-6 md:px-8 md:pl-[4.75rem]">
+                    <Link
+                      href={`/uslugi/${s.slug}/`}
+                      className={cn(
+                        "text-sm font-medium underline-offset-4 transition-colors duration-[400ms] hover:underline",
+                        open
+                          ? "text-milk-100"
+                          : "text-ink-900 group-hover:text-milk-100",
+                      )}
+                    >
+                      Подробнее об услуге →
+                    </Link>
+                  </div>
 
                   {hasDetails && (
                     <Collapse open={open}>
