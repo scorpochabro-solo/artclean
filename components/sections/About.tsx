@@ -2,10 +2,8 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { Counter } from "@/components/ui/Counter";
-import Image from "next/image";
 import { facts } from "@/content/facts";
 import { ruTypo } from "@/lib/utils";
-import { BASE_PATH } from "@/lib/constants";
 
 const paragraphs = [
   "«Арт Клининг» — клининговая компания, которая не просто убирает, а создаёт атмосферу чистоты и гармонии в вашем пространстве. Мы верим: чистота — это основа вашего вдохновения и спокойствия.",
@@ -38,20 +36,30 @@ export function About() {
 
           <div className="lg:col-span-5">
             <Reveal delay={0.1}>
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[20px]">
-                <Image
-                  src={`${BASE_PATH}/photos/about-interior.jpg`}
-                  alt="Интерьер в тёплой молочной палитре"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="photo-tone object-cover"
-                />
+              {/* Плитка масштаба вместо фото — по правке клиента. */}
+              <div className="on-dark relative flex aspect-[3/4] w-full flex-col justify-between overflow-hidden rounded-[20px] bg-ink-900 p-8 md:p-10">
+                <Eyebrow as="p" tone="dark" withDrop>
+                  Масштаб
+                </Eyebrow>
+                <div>
+                  <p className="font-display text-[clamp(3.5rem,6vw,5.5rem)] leading-none text-milk-50">
+                    1000&nbsp;м²
+                  </p>
+                  <p className="font-display mt-2 text-xl italic text-taupe-500">
+                    и больше
+                  </p>
+                  <p className="measure mt-6 leading-[1.65] text-milk-200">
+                    {ruTypo(
+                      "Убираем коммерческие помещения и площади любого масштаба — от тысячи квадратных метров: офисы, торговые пространства, объекты после стройки.",
+                    )}
+                  </p>
+                </div>
               </div>
             </Reveal>
           </div>
         </div>
 
-        <div className="mt-16 grid gap-8 border-t border-milk-200 pt-12 sm:grid-cols-3 md:mt-24">
+        <div className="mt-16 grid gap-8 border-t border-milk-200 pt-12 sm:grid-cols-2 md:mt-24">
           {facts.map((f, i) => (
             <Reveal key={i} delay={i * 0.08}>
               <div>
