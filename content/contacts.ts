@@ -13,7 +13,7 @@ export const contacts = {
   email: "Djulikin@mail.ru",
   emailHref: "mailto:Djulikin@mail.ru",
 
-  city: "Кострома и область",
+  city: "Кострома и область · Иваново · Ярославль · Санкт-Петербург · Москва",
 
   // TODO (бриф 5.8): часы работы.
   hours: "",
