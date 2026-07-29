@@ -42,11 +42,8 @@ export function About() {
                   Масштаб
                 </Eyebrow>
                 <div>
-                  <p className="font-display text-[clamp(3.5rem,6vw,5.5rem)] leading-none text-milk-50">
-                    1000&nbsp;м²
-                  </p>
-                  <p className="font-display mt-2 text-xl italic text-taupe-500">
-                    и больше
+                  <p className="font-display text-[clamp(3rem,5.5vw,5rem)] leading-none text-milk-50">
+                    от&nbsp;1000&nbsp;м²
                   </p>
                   <p className="measure mt-6 leading-[1.65] text-milk-200">
                     {ruTypo(
